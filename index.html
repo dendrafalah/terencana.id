@@ -178,10 +178,27 @@ body.menuOpen .mnav{ display:block; }
 
 
     .brand{
-      display:flex; align-items:center; gap:10px;
-      text-decoration:none;
-      min-width: 220px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
     }
+
+    .brandName{
+  font-size: 18px;       /* desktop */
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+/* mobile */
+@media (max-width: 820px){
+  .brandName{
+    font-size: 16px;
+  }
+}
+    
     .mark{
       width:34px;height:34px;border-radius:10px;
       background: var(--ink);
@@ -809,13 +826,11 @@ body.menuOpen .mnav{ display:block; }
     <div class="topbar">
         <a class="brand" href="#top" aria-label="terencana.id">
             <img
-              src="/images/logo-terencana.png"
+              src="/images/logo-terencana.svg"
               alt="terencana.id"
               class="logoSvg"
             />
-            <div class="brandText">
-              <div class="tagline">Tenang bukan soal punya banyak,<br/>tapi soal tahu arah.</div>
-            </div>
+            <span class="brandName">terencana.id</span>
           </a>
 
       <!-- Desktop nav -->
