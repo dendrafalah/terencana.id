@@ -598,7 +598,199 @@ body.menuOpen .mnav{ display:block; }
   .aboutMedia::after{ background: linear-gradient(180deg, rgba(244,241,232,.92), rgba(244,241,232,0) 55%); }
 }
 
+/* ===== How it works (3 steps) ===== */
+.howWrap{ margin-top: 16px; }
 
+.howGrid{
+  display:grid;
+  gap:12px;
+  margin-top: 14px;
+}
+
+.stepCard{
+  background: var(--card);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+  position:relative;
+}
+
+.stepInner{
+  padding: 16px;
+  display:grid;
+  gap: 12px;
+}
+
+.stepTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.stepNo{
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  font-weight: 1000;
+  letter-spacing: -.02em;
+  background: rgba(17,17,17,.06);
+  border: 1px solid rgba(17,17,17,.10);
+}
+
+.stepTitle{
+  margin:0;
+  font-size: 16px;
+  letter-spacing: -.02em;
+}
+
+.stepDesc{
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 70ch;
+}
+
+.stepMeta{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.metaPill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(17,17,17,.10);
+  font-weight: 900;
+  font-size: 12px;
+  color: rgba(17,17,17,.78);
+}
+
+.metaPill small{
+  font-weight: 900;
+  color: rgba(17,17,17,.55);
+}
+
+.stepIcon{
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,138,0,.14);
+  border: 1px solid rgba(255,138,0,.22);
+}
+.stepIcon svg{ width: 20px; height: 20px; }
+
+.stepDivider{
+  height: 1px;
+  background: rgba(17,17,17,.08);
+  margin: 0 16px;
+}
+
+.howCtaRow{
+  margin-top: 16px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.howNote{
+  margin-top: 10px;
+  color: rgba(17,17,17,.62);
+  font-size: 13px;
+}
+
+/* Desktop layout */
+@media (min-width: 920px){
+  .howGrid{ grid-template-columns: repeat(3, 1fr); }
+  .stepInner{ padding: 18px; }
+  .stepDesc{ min-height: 64px; } /* rapihin tinggi */
+}
+
+/* ===== FAQ ===== */
+.faqWrap{
+  margin-top: 16px;
+  display:grid;
+  gap:12px;
+}
+
+.faqItem{
+  background: var(--card);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+}
+
+.faqQ{
+  width:100%;
+  background: transparent;
+  border:0;
+  padding: 16px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  cursor:pointer;
+}
+
+.faqQ b{
+  font-size:15px;
+  letter-spacing:-.01em;
+}
+
+.faqIcon{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background: rgba(17,17,17,.06);
+  border:1px solid rgba(17,17,17,.10);
+  font-weight:900;
+  transition: transform .2s ease;
+}
+
+.faqA{
+  padding: 0 16px 16px;
+  color: var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  display:none;
+  max-width: 80ch;
+}
+
+.faqItem.open .faqA{ display:block; }
+.faqItem.open .faqIcon{ transform: rotate(45deg); }
+
+/* desktop spacing */
+@media (min-width: 920px){
+  .faqQ{ padding: 18px; }
+  .faqA{ padding: 0 18px 18px; }
+}
+
+.logoSvg{
+  height: 34px;       /* sejajar header */
+  width: auto;
+  display:block;
+}
+
+@media (max-width: 820px){
+  .logoSvg{
+    height: 30px;
+  }
+}
 
   </style>
 </head>
@@ -615,13 +807,16 @@ body.menuOpen .mnav{ display:block; }
   <header>
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="#top" aria-label="terencana.id">
-  <div class="mark">t</div>
-  <div class="brandText">
-    <div class="b1">terencana.id</div>
-    <div class="tagline">Tenang bukan soal punya banyak,<br/>tapi soal tahu arah.</div>
-  </div>
-</a>
+        <a class="brand" href="#top" aria-label="terencana.id">
+            <img
+              src="/images/logo-terencana.svg"
+              alt="terencana.id"
+              class="logoSvg"
+            />
+            <div class="brandText">
+              <div class="tagline">Tenang bukan soal punya banyak,<br/>tapi soal tahu arah.</div>
+            </div>
+          </a>
 
       <!-- Desktop nav -->
       <nav class="nav" aria-label="Navigasi">
@@ -672,7 +867,7 @@ body.menuOpen .mnav{ display:block; }
       <div class="wrap">
         <div class="grid">
           <div>
-            <div class="kicker"><span class="dot"></span>terencana.id adalah tempat kamu merapikan arah keuangan, pelan-pelan tapi jelas.</div>
+            <div class="kicker"><span class="dot"></span>terencana.id adalah tempat praktis untuk merapikan kondisi keuangan kamu</div>
 
             <h1>Apakah kondisi keuangan kamu sehat? </h1>
 
@@ -843,9 +1038,6 @@ body.menuOpen .mnav{ display:block; }
 <section id="about" class="section">
     <div class="wrap">
       <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">Tentang terencana.id</h2>
-      <p class="sectionDesc">
-        Kombinasi <b>arah yang jelas</b> + <b>pendampingan yang manusiawi</b>, buat kamu yang ingin beres pelan-pelan tapi nyata.
-      </p>
   
       <div class="aboutWrap">
   
@@ -854,20 +1046,20 @@ body.menuOpen .mnav{ display:block; }
           <div class="aboutGrid">
             <div class="aboutText">
               <div class="aboutKicker"><span class="dot"></span>Kenapa terencana.id ada</div>
-              <h3 class="aboutTitle">Keuangan itu bukan lomba. Tapi kompas.</h3>
+              <h3 class="aboutTitle">Tenang bukan soal punya banyak, tapi soal tahu arah</h3>
               <p>
                 Banyak orang terlihat “baik-baik saja”, tapi tiap malam kepikiran:
                 uang habis ke mana, prioritas apa dulu, dan takut salah langkah.
                 terencana.id dibuat untuk memecah kebingungan itu jadi langkah kecil yang masuk akal.
               </p>
               <p>
-                Fokus kami sederhana: <b>bikin kamu paham kondisi sekarang</b>,
-                lalu bantu pilih <b>1 langkah pertama</b> yang paling realistis untuk minggu ini.
+                Fokus kami sederhana: bikin kamu paham kondisi sekarang, evaluasi pilihan rencana,
+                lalu bantu pilih prioritas yang paling realistis untuk dijalankan.
               </p>
   
               <div class="aboutStats">
                 <span class="statPill">±5 menit <small>cek kondisi</small></span>
-                <span class="statPill">Ringkas <small>tanpa istilah ribet</small></span>
+                <span class="statPill">Praktis <small>bahasa simpel</small></span>
                 <span class="statPill">Actionable <small>1 langkah dulu</small></span>
               </div>
   
@@ -879,7 +1071,7 @@ body.menuOpen .mnav{ display:block; }
   
             <div class="aboutMedia" aria-label="Ilustrasi terencana.id">
               <!-- GANTI src sesuai file kamu -->
-              <img src="/images/about-1.jpg" alt="Suasana konsultasi / perencanaan yang tenang" loading="lazy">
+              <img src="/images/about-1.JPG" alt="about terencana.id" loading="lazy">
             </div>
           </div>
         </div>
@@ -891,13 +1083,13 @@ body.menuOpen .mnav{ display:block; }
               <div class="aboutKicker"><span class="dot"></span>Founder</div>
               <h3 class="aboutTitle">Dendra Falah, MBA, CFP®</h3>
               <p>
-                Saya perencana keuangan bersertifikasi yang percaya:
-                masalah keuangan jarang karena “kurang pintar” — lebih sering karena
-                <b>nggak punya peta yang sederhana</b> dan lingkungan yang aman untuk mulai.
+                Dendra Falah, MBA, CFP® merupakan perencana keuangan bersertifikasi 
+                yang memiliki pengalaman dalam pendampingan perencanaan keuangan personal dan keluarga.
               </p>
               <p>
-                Di terencana.id, pendekatannya <b>tanpa menghakimi</b>, <b>tanpa memaksa produk</b>,
-                dan fokus pada keputusan yang paling masuk akal untuk hidupmu sekarang.
+                Melalui terencana.id, ia menerapkan pendekatan perencanaan keuangan yang simple dan terstruktur, 
+                dengan fokus pada pemahaman kondisi keuangan, penentuan prioritas, 
+                dan langkah yang paling relevan untuk dijalankan saat ini.
               </p>
   
               <div class="aboutStats">
@@ -915,7 +1107,7 @@ body.menuOpen .mnav{ display:block; }
   
             <div class="aboutMedia" aria-label="Foto founder">
               <!-- GANTI src sesuai file kamu -->
-              <img src="/images/about-2.jpg" alt="Dendra Falah, founder terencana.id" loading="lazy">
+              <img src="/images/about-2.jpg" alt="Dendra Falah, Founder terencana.id" loading="lazy">
             </div>
           </div>
         </div>
@@ -925,12 +1117,133 @@ body.menuOpen .mnav{ display:block; }
   </section>
   
 
-<section id="how" class="section">
-  <div class="wrap">
-    <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">Cara kerja</h2>
-    <p class="sectionDesc">Isi 5 menit → dapat ringkasan → pilih langkah pertama → (opsional) konsultasi.</p>
-  </div>
-</section>
+  <section id="how" class="section">
+    <div class="wrap">
+      <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">Cara kerja</h2>
+      <p class="sectionDesc">
+        Prosesnya dibuat ringkas dan terstruktur, kamu akan dapat <b>ringkasan</b>, lalu <b>langkah pertama</b> yang jelas.
+      </p>
+  
+      <div class="howWrap">
+        <div class="howGrid">
+  
+          <!-- Step 1 -->
+          <div class="stepCard">
+            <div class="stepInner">
+              <div class="stepTop">
+                <div>
+                  <div class="stepNo">1</div>
+                </div>
+                <div class="stepIcon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10M7 12h10M7 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M6 3h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="currentColor" stroke-width="1.4"/>
+                  </svg>
+                </div>
+              </div>
+  
+              <div>
+                <h3 class="stepTitle">Isi Financial Health Check (±5 menit)</h3>
+                <p class="stepDesc">
+                  Kamu mengisi data dasar yang dibutuhkan untuk membaca kondisi: pengeluaran, tabungan, cicilan, dan arus kas bulanan.
+                </p>
+  
+                <div class="stepMeta">
+                  <span class="metaPill">Privat <small>di perangkatmu</small></span>
+                  <span class="metaPill">Singkat <small>tanpa istilah rumit</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="stepDivider"></div>
+            <div class="stepInner" style="padding-top:12px;">
+              <p class="stepDesc" style="margin:0;">
+                Hasilnya langsung bisa kamu lihat begitu selesai isi.
+              </p>
+            </div>
+          </div>
+  
+          <!-- Step 2 -->
+          <div class="stepCard">
+            <div class="stepInner">
+              <div class="stepTop">
+                <div><div class="stepNo">2</div></div>
+                <div class="stepIcon" aria-hidden="true" style="background: rgba(17,17,17,.06); border-color: rgba(17,17,17,.10);">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 19V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M7 16l3-4 3 2 4-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+  
+              <div>
+                <h3 class="stepTitle">Dapat ringkasan: aman vs perlu diperbaiki</h3>
+                <p class="stepDesc">
+                  Kamu akan melihat indikator inti secara ringkas: mana yang sudah sehat, mana yang berisiko, dan apa penyebab utamanya.
+                </p>
+  
+                <div class="stepMeta">
+                  <span class="metaPill">Ringkas <small>mudah dibaca</small></span>
+                  <span class="metaPill">Prioritas <small>jelas</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="stepDivider"></div>
+            <div class="stepInner" style="padding-top:12px;">
+              <p class="stepDesc" style="margin:0;">
+                Tujuannya bukan menilai, tapi memberi gambaran yang lebih objektif.
+              </p>
+            </div>
+          </div>
+  
+          <!-- Step 3 -->
+          <div class="stepCard">
+            <div class="stepInner">
+              <div class="stepTop">
+                <div><div class="stepNo">3</div></div>
+                <div class="stepIcon" aria-hidden="true" style="background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.22);">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 22a10 10 0 100-20 10 10 0 000 20z" stroke="currentColor" stroke-width="1.4"/>
+                  </svg>
+                </div>
+              </div>
+  
+              <div>
+                <h3 class="stepTitle">Pilih langkah pertama (opsional: konsultasi)</h3>
+                <p class="stepDesc">
+                  Setelah tahu prioritas, kamu bisa mulai dari satu langkah paling relevan.
+                  Jika perlu, kamu bisa konsultasi untuk interpretasi hasil dan penyusunan rencana 30 hari.
+                </p>
+  
+                <div class="stepMeta">
+                  <span class="metaPill">Actionable <small>1 langkah dulu</small></span>
+                  <span class="metaPill">Opsional <small>konsultasi</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="stepDivider"></div>
+            <div class="stepInner" style="padding-top:12px;">
+              <p class="stepDesc" style="margin:0;">
+                Kamu tetap pegang kontrol penuh atas keputusan dan ritmemu sendiri.
+              </p>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="howCtaRow">
+          <a class="btn primary" href="/financial-health-check/">Mulai Health Check (±5 menit)</a>
+          <a id="waHow" class="btn ghost" href="#">Tanya dulu via WhatsApp</a>
+        </div>
+  
+        <div class="howNote">
+          *Health Check bersifat edukatif dan membantu kamu memahami kondisi. Untuk keputusan finansial besar, pertimbangkan konsultasi lebih lanjut.
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
 <section id="contact" class="section">
   <div class="wrap">
@@ -945,11 +1258,95 @@ body.menuOpen .mnav{ display:block; }
 
 
 <section id="faq" class="section">
-  <div class="wrap">
-    <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">FAQs</h2>
-    <p class="sectionDesc">Coming soon.</p>
-  </div>
-</section>
+    <div class="wrap">
+      <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">FAQ</h2>
+      <p class="sectionDesc">
+        Beberapa pertanyaan yang sering muncul sebelum memulai Financial Health Check.
+      </p>
+  
+      <div class="faqWrap">
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apa itu Financial Health Check?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Financial Health Check adalah alat evaluasi singkat untuk membantu kamu
+            memahami kondisi keuangan saat ini—mulai dari pengeluaran, tabungan,
+            cicilan, hingga arus kas bulanan—dalam format yang ringkas dan mudah dibaca.
+          </div>
+        </div>
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apakah layanan ini gratis?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Ya. Financial Health Check dapat digunakan secara gratis.
+            Kamu bisa melihat ringkasan kondisi dan prioritas awal tanpa
+            kewajiban untuk melanjutkan ke layanan lain.
+          </div>
+        </div>
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apakah data keuangan saya aman?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Data yang kamu masukkan digunakan untuk menghasilkan ringkasan
+            kondisi keuangan dan tidak dibagikan ke pihak lain.
+            Kami tidak menjual maupun memanfaatkan data untuk kepentingan komersial.
+          </div>
+        </div>
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apakah ini cocok untuk pemula?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Sangat cocok. Financial Health Check dirancang untuk digunakan
+            tanpa latar belakang keuangan. Tidak ada istilah teknis yang rumit,
+            dan hasilnya difokuskan pada hal-hal yang paling relevan untuk kondisi saat ini.
+          </div>
+        </div>
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apakah ini menggantikan konsultasi keuangan?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Tidak. Health Check membantu kamu memahami kondisi dan prioritas awal.
+            Untuk pembahasan yang lebih mendalam atau rencana jangka panjang,
+            konsultasi tetap disarankan sebagai langkah lanjutan (opsional).
+          </div>
+        </div>
+  
+        <div class="faqItem">
+          <button class="faqQ" type="button">
+            <b>Apakah saya harus langsung investasi setelah ini?</b>
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqA">
+            Tidak. Fokus utama adalah memastikan kondisi keuangan dasar
+            sudah cukup sehat. Investasi hanya relevan jika memang sesuai
+            dengan kondisi dan prioritas kamu saat ini.
+          </div>
+        </div>
+  
+      </div>
+  
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn primary" href="/financial-health-check/">Mulai Health Check</a>
+        <a id="waFaq" class="btn ghost" href="#">Masih ada pertanyaan?</a>
+      </div>
+    </div>
+  </section>
+  
 
 
     <footer>
@@ -982,6 +1379,8 @@ body.menuOpen .mnav{ display:block; }
     const waConsult = document.getElementById("waConsult");
     const waContact = document.getElementById("waContact");
     const waAbout = document.getElementById("waAbout");
+    const waHow = document.getElementById("waHow");
+    if (waHow) waHow.href = buildWA("Halo terencana.id, saya lihat cara kerja. Saya mau tanya dulu sebelum mulai Health Check.");
     if (waAbout) waAbout.href = buildWA("Halo terencana.id, saya baca bagian Tentang. Saya mau tanya: langkah pertama paling aman buat kondisi saya apa ya?");
     if (waContact) waContact.href = buildWA("Halo terencana.id, saya mau tanya dulu soal Financial Health Check.");
     if (waConsult) waConsult.href = buildWA("Halo terencana.id, saya sudah lihat landing page Financial Health Check. Saya ingin konsultasi untuk interpretasi hasil dan langkah berikutnya. Bisa dibantu?");
@@ -991,6 +1390,20 @@ body.menuOpen .mnav{ display:block; }
 
     </script>
 
+
+    <script>
+        document.querySelectorAll(".faqQ").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const item = btn.closest(".faqItem");
+            item.classList.toggle("open");
+          });
+        });
+      
+        const waFaq = document.getElementById("waFaq");
+        if (waFaq) waFaq.href = buildWA("Halo terencana.id, saya masih ada beberapa pertanyaan sebelum mulai Health Check.");
+      </script>
+     
+    
   <!-- ===== Mobile menu logic (LENGKAP) ===== -->
   <script>
     // ===== Mobile menu logic =====
