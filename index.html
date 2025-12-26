@@ -484,6 +484,122 @@ body.menuOpen .mnav{ display:block; }
   .tagline{ display:none; } /* kalau mau tetap tampil, hapus baris ini */
 }
 
+/* ===== About (split section) ===== */
+.aboutWrap{ margin-top:16px; display:grid; gap:16px; }
+
+.aboutBlock{
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.45));
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+}
+
+.aboutGrid{
+  display:grid;
+  gap: 0;
+  align-items:stretch;
+}
+
+.aboutText{
+  padding: 18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap: 10px;
+}
+
+.aboutKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  font-size:12px;
+  color: rgba(17,17,17,.72);
+}
+.aboutKicker .dot{ width:9px;height:9px;border-radius:999px; background:var(--accent); box-shadow:0 0 0 6px rgba(255,138,0,.18); }
+
+.aboutTitle{
+  margin:0;
+  font-size:18px;
+  letter-spacing:-.02em;
+}
+.aboutText p{
+  margin:0;
+  color: var(--muted);
+  font-size:14px;
+  max-width: 70ch;
+}
+
+.aboutStats{
+  margin-top: 8px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.statPill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  border:1px solid rgba(17,17,17,.10);
+  font-weight:800;
+  font-size:12px;
+  color: rgba(17,17,17,.78);
+}
+.statPill small{
+  font-weight:800;
+  color: rgba(17,17,17,.55);
+}
+
+.aboutCtaRow{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+/* image panel */
+.aboutMedia{
+  position:relative;
+  min-height: 240px;
+  background: rgba(17,17,17,.06);
+}
+.aboutMedia img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.aboutMedia::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(244,241,232,.92), rgba(244,241,232,0) 58%);
+  opacity:.55;
+  pointer-events:none;
+}
+
+/* layout desktop */
+@media (min-width: 920px){
+  .aboutGrid{ grid-template-columns: 1.05fr .95fr; }
+  .aboutText{ padding: 22px; }
+  .aboutMedia{ min-height: 320px; }
+  .aboutBlock.reverse .aboutGrid{ grid-template-columns: .95fr 1.05fr; }
+  .aboutBlock.reverse .aboutText{ order: 2; }
+  .aboutBlock.reverse .aboutMedia{ order: 1; }
+}
+
+/* layout mobile: stack */
+@media (max-width: 919px){
+  .aboutMedia::after{ background: linear-gradient(180deg, rgba(244,241,232,.92), rgba(244,241,232,0) 55%); }
+}
+
+
+
   </style>
 </head>
 
@@ -491,7 +607,7 @@ body.menuOpen .mnav{ display:block; }
   <!-- CONFIG: GANTI nomor WA di sini (format 62xxxxxxxxxxx) -->
   <script>
     window.__T = {
-      waNumber: "6280000000000",
+      waNumber: "6281944123422",
       waText: "Halo terencana.id, saya ingin mulai Financial Health Check."
     };
   </script>
@@ -725,11 +841,89 @@ body.menuOpen .mnav{ display:block; }
 </section>
 
 <section id="about" class="section">
-  <div class="wrap">
-    <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">Tentang kami</h2>
-    <p class="sectionDesc">terencana.id membantu kamu merapikan arah keuangan—pelan-pelan tapi jelas.</p>
-  </div>
-</section>
+    <div class="wrap">
+      <h2 style="margin:0; font-size:24px; letter-spacing:-.02em;">Tentang terencana.id</h2>
+      <p class="sectionDesc">
+        Kombinasi <b>arah yang jelas</b> + <b>pendampingan yang manusiawi</b>, buat kamu yang ingin beres pelan-pelan tapi nyata.
+      </p>
+  
+      <div class="aboutWrap">
+  
+        <!-- Block 1: Brand -->
+        <div class="aboutBlock">
+          <div class="aboutGrid">
+            <div class="aboutText">
+              <div class="aboutKicker"><span class="dot"></span>Kenapa terencana.id ada</div>
+              <h3 class="aboutTitle">Keuangan itu bukan lomba. Tapi kompas.</h3>
+              <p>
+                Banyak orang terlihat “baik-baik saja”, tapi tiap malam kepikiran:
+                uang habis ke mana, prioritas apa dulu, dan takut salah langkah.
+                terencana.id dibuat untuk memecah kebingungan itu jadi langkah kecil yang masuk akal.
+              </p>
+              <p>
+                Fokus kami sederhana: <b>bikin kamu paham kondisi sekarang</b>,
+                lalu bantu pilih <b>1 langkah pertama</b> yang paling realistis untuk minggu ini.
+              </p>
+  
+              <div class="aboutStats">
+                <span class="statPill">±5 menit <small>cek kondisi</small></span>
+                <span class="statPill">Ringkas <small>tanpa istilah ribet</small></span>
+                <span class="statPill">Actionable <small>1 langkah dulu</small></span>
+              </div>
+  
+              <div class="aboutCtaRow">
+                <a class="btn primary" href="/financial-health-check/">Mulai Health Check</a>
+                <a class="btn ghost" href="#how">Lihat cara kerja</a>
+              </div>
+            </div>
+  
+            <div class="aboutMedia" aria-label="Ilustrasi terencana.id">
+              <!-- GANTI src sesuai file kamu -->
+              <img src="/images/about-1.jpg" alt="Suasana konsultasi / perencanaan yang tenang" loading="lazy">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Block 2: Founder -->
+        <div class="aboutBlock reverse">
+          <div class="aboutGrid">
+            <div class="aboutText">
+              <div class="aboutKicker"><span class="dot"></span>Founder</div>
+              <h3 class="aboutTitle">Dendra Falah, MBA, CFP®</h3>
+              <p>
+                Saya perencana keuangan bersertifikasi yang percaya:
+                masalah keuangan jarang karena “kurang pintar” — lebih sering karena
+                <b>nggak punya peta yang sederhana</b> dan lingkungan yang aman untuk mulai.
+              </p>
+              <p>
+                Di terencana.id, pendekatannya <b>tanpa menghakimi</b>, <b>tanpa memaksa produk</b>,
+                dan fokus pada keputusan yang paling masuk akal untuk hidupmu sekarang.
+              </p>
+  
+              <div class="aboutStats">
+                <span class="statPill">CFP® <small>certified</small></span>
+                <span class="statPill">Beginner-friendly <small>clear steps</small></span>
+                <span class="statPill">Family finance <small>real life</small></span>
+              </div>
+  
+              <div class="aboutCtaRow">
+                <a class="chip" href="https://www.linkedin.com/in/dendrafalah/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="chip" href="https://www.instagram.com/dendrafalah/" target="_blank" rel="noreferrer">Instagram</a>
+                <a id="waAbout" class="btn ghost" href="#">Tanya dulu (WhatsApp)</a>
+              </div>
+            </div>
+  
+            <div class="aboutMedia" aria-label="Foto founder">
+              <!-- GANTI src sesuai file kamu -->
+              <img src="/images/about-2.jpg" alt="Dendra Falah, founder terencana.id" loading="lazy">
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
 
 <section id="how" class="section">
   <div class="wrap">
@@ -787,6 +981,8 @@ body.menuOpen .mnav{ display:block; }
     const waHelp = document.getElementById("waHelp");
     const waConsult = document.getElementById("waConsult");
     const waContact = document.getElementById("waContact");
+    const waAbout = document.getElementById("waAbout");
+    if (waAbout) waAbout.href = buildWA("Halo terencana.id, saya baca bagian Tentang. Saya mau tanya: langkah pertama paling aman buat kondisi saya apa ya?");
     if (waContact) waContact.href = buildWA("Halo terencana.id, saya mau tanya dulu soal Financial Health Check.");
     if (waConsult) waConsult.href = buildWA("Halo terencana.id, saya sudah lihat landing page Financial Health Check. Saya ingin konsultasi untuk interpretasi hasil dan langkah berikutnya. Bisa dibantu?");
     if (waAsk) waAsk.href = buildWA("Halo terencana.id, saya tertarik Financial Health Check. Boleh tanya sebelum mulai?");
