@@ -44,7 +44,12 @@
   }
   
   a{ color:inherit; }
-  .wrap{ max-width:var(--max); margin:0 auto; padding:0 20px; }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
   section{ scroll-margin-top:92px; }
   
   /* =========================
@@ -59,6 +64,11 @@
     border-bottom: 1px solid rgba(17,17,17,.08);
   }
   
+  header{
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
   .topbar{
     display:flex;
     align-items:center;
@@ -241,6 +251,15 @@
     .nav{ display:none; }
     .menuBtn{ display:inline-flex; }
   }
+  
+  /* 👇 TAMBAHKAN INI */
+  @media (max-width: 420px){
+    .btn{
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+  }
+  
   
   /* =========================
      5) Typography / Sections
