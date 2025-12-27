@@ -181,11 +181,6 @@ body.menuOpen .mnav{ display:block; }
   align-items:center;
   text-decoration:none;
 
-  /* ⬇️ INI KUNCINYA */
-  max-width: 260px;   /* ruang horizontal logo */
-  width: 100%;
-}
-
     .brandName{
   font-size: 18px;       /* desktop */
   font-weight: 900;
@@ -800,18 +795,17 @@ body.menuOpen .mnav{ display:block; }
 }
 
 .logoSvg{
-  width: 100%;        /* ⬅️ ini bikin memanjang */
-  height: auto;
-  max-height: 44px;   /* kontrol tinggi header */
+  height: 42px;          /* kontrol tinggi header */
+  width: auto;           /* JANGAN width:100% */
+  max-width: 260px;      /* batas maksimal memanjang */
+  object-fit: contain;   /* jaga proporsi */
   display:block;
 }
 
 @media (max-width: 820px){
-  .brand{
-    max-width: 200px;
-  }
   .logoSvg{
-    max-height: 36px;
+    height: 34px;
+    max-width: 200px;
   }
 }
 
