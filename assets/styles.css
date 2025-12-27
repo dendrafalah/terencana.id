@@ -252,6 +252,34 @@
     .menuBtn{ display:inline-flex; }
   }
   
+  /* Fix: header CTA kepotong di layar kecil */
+@media (max-width: 420px){
+  .topbar{
+    flex-wrap: wrap;          /* bikin bisa 2 baris */
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .actions{
+    width: 100%;              /* actions pindah jadi satu baris penuh */
+    justify-content: flex-end; /* tombol rata kanan */
+  }
+
+  .actions .btn.primary{
+    width: 100%;              /* CTA full width biar pasti nggak kepotong */
+  }
+
+  /* optional: kecilin logo sedikit biar lega */
+  .logoSvg{ height: 30px; }
+}
+
+@media (max-width: 420px){
+  .actions .btn.primary{
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}
+
   /* 👇 TAMBAHKAN INI */
   @media (max-width: 420px){
     .btn{
