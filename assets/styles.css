@@ -253,12 +253,12 @@
   }
   
   /* Fix: header CTA kepotong di layar kecil */
-@media (max-width: 420px){
-  .topbar{
-    flex-wrap: wrap;          /* bikin bisa 2 baris */
-    justify-content: flex-start;
-    gap: 10px;
-  }
+  @media (max-width: 420px){
+    .topbar{
+      flex-wrap: nowrap;        /* PENTING: jangan wrap */
+      align-items: center;
+      gap: 10px;
+    }
 
   .actions{
     width: 100%;              /* actions pindah jadi satu baris penuh */
@@ -274,9 +274,17 @@
 }
 
 @media (max-width: 420px){
+  .actions{
+    flex: 1;                  /* boleh ambil / lepas space */
+    min-width: 0;             /* WAJIB biar flex bisa shrink */
+  }
+
   .actions .btn.primary{
-    padding: 12px 14px;
-    font-size: 13px;
+    max-width: 100%;
+    padding: 10px 12px;
+    font-size: clamp(12px, 3.2vw, 14px); /* auto kecil di layar sempit */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -285,6 +293,12 @@
     .btn{
       padding: 10px 14px;
       font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 420px){
+    .logoSvg{
+      height: 30px;
     }
   }
   
