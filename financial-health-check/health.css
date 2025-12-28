@@ -1,0 +1,465 @@
+/* terencana.id — financial health check (wizard) */
+:root{
+  --fhc-border: rgba(17,17,17,.10);
+  --fhc-soft: rgba(255,255,255,.55);
+  --fhc-white: rgba(255,255,255,.82);
+}
+
+.fhcHero{ padding: 18px 0 10px; }
+.fhcHeroCard{
+  background: var(--card);
+  border: 1px solid var(--fhc-border);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow2);
+  padding: 16px;
+}
+
+.fhcTitleRow{
+  display:flex;
+  gap:14px;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.fhcH1{
+  margin:0;
+  font-size: clamp(22px, 3.4vw, 34px);
+  line-height:1.1;
+  letter-spacing:-.03em;
+}
+.fhcByline{
+  margin-top:6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.fhcByline b{ color: var(--ink); }
+.fhcSocial a{
+  color: rgba(17,17,17,.72);
+  text-decoration:none;
+  border-bottom: 1px dashed rgba(17,17,17,.28);
+  padding-bottom:2px;
+}
+.fhcSocial a:hover{ border-bottom-style:solid; color: var(--ink); }
+.fhcLead{
+  margin: 10px 0 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.fhcMode{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(17,17,17,.10);
+}
+.fhcModeLabel{
+  font-weight:900;
+  font-size: 12px;
+  color: rgba(17,17,17,.68);
+}
+.fhcChip{
+  border: 1px solid rgba(17,17,17,.14);
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  cursor:pointer;
+}
+.fhcChip[aria-pressed="true"]{
+  background: rgba(17,17,17,.08);
+  border-color: rgba(17,17,17,.18);
+}
+
+.fhcPrivacy{
+  margin-top: 12px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.50);
+  border: 1px solid rgba(17,17,17,.08);
+  color: rgba(17,17,17,.68);
+  font-size: 13px;
+}
+.fhcDot{
+  width:10px;height:10px;border-radius:999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(255,138,0,.14);
+}
+
+.fhcStepper{ margin-top: 14px; }
+.fhcStepTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom: 8px;
+}
+.fhcStepText{ font-weight:1000; font-size: 13px; }
+.fhcStepMini{
+  font-weight:900;
+  font-size: 12px;
+  color: rgba(17,17,17,.62);
+  background: rgba(17,17,17,.05);
+  border: 1px solid rgba(17,17,17,.08);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.fhcBar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(17,17,17,.08);
+  overflow:hidden;
+}
+.fhcBarFill{
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255,138,0,.9), rgba(255,176,0,.9));
+  transition: width .35s ease;
+}
+
+.fhcWizard{ padding: 12px 0 70px; }
+.fhcStepWrap{ display:grid; gap:12px; }
+.fhcCard{
+  background: var(--card);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow2);
+  padding: 16px;
+}
+
+.fhcH2{ margin:0 0 10px; font-size: 18px; letter-spacing:-.02em; }
+.fhcP{ margin:0; color: var(--muted); }
+
+.fhcGrid2{
+  margin-top: 12px;
+  display:grid;
+  gap:12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px){
+  .fhcGrid2{ grid-template-columns: 1fr 1fr; }
+}
+
+.fhcField{ display:grid; gap:8px; margin-bottom: 10px; }
+.fhcField label{
+  font-weight: 900;
+  font-size: 13px;
+  color: rgba(17,17,17,.85);
+}
+.fhcField input, .fhcField select, .fhcField textarea{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(17,17,17,.18);
+  background: rgba(255,255,255,.70);
+  font: inherit;
+}
+.fhcField textarea{ min-height: 96px; resize: vertical; }
+
+.fhcSectionHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.fhcMiniHelp{
+  color: rgba(17,17,17,.62);
+  font-size: 13px;
+  max-width: 70ch;
+}
+.fhcAddRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top: 12px;
+}
+
+.fhcItems{ margin-top: 12px; display:grid; gap:10px; }
+.fhcItem{
+  background: rgba(255,255,255,.58);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  padding: 12px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.fhcItemMain{ flex: 1; min-width: 0; }
+.fhcItemTitle{ font-weight:1000; margin:0 0 8px; }
+.fhcRow{
+  display:grid;
+  gap:10px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px){
+  .fhcRow{ grid-template-columns: 1.2fr .8fr; align-items:end; }
+}
+
+.fhcInline{
+  display:grid;
+  gap:8px;
+}
+.fhcInline small{ color: rgba(17,17,17,.58); }
+
+.fhcMoney{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.fhcMoney .rp{
+  font-weight: 1000;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(17,17,17,.06);
+  border: 1px solid rgba(17,17,17,.10);
+}
+.fhcMoney input{ flex:1; }
+
+.fhcPeriod{
+  display:flex;
+  gap:8px;
+}
+.fhcPeriod button{
+  flex:1;
+  border: 1px solid rgba(17,17,17,.14);
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 1000;
+  cursor:pointer;
+}
+.fhcPeriod button[aria-pressed="true"]{
+  background: rgba(17,17,17,.08);
+  border-color: rgba(17,17,17,.18);
+}
+
+.fhcItemActions{
+  flex: 0 0 auto;
+}
+.fhcIconBtn{
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  border: 1px solid rgba(17,17,17,.16);
+  background: rgba(255,255,255,.55);
+  cursor:pointer;
+  font-weight: 1000;
+}
+.fhcIconBtn:hover{ background: rgba(17,17,17,.06); }
+
+.fhcSubtotal{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(17,17,17,.04);
+  border: 1px solid rgba(17,17,17,.08);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  font-weight: 1000;
+}
+
+.fhcNav{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.fhcNavRight{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.fhcHint{
+  color: rgba(17,17,17,.62);
+  font-size: 13px;
+}
+
+/* Table mode (hybrid) */
+.fhcTableWrap{
+  margin-top: 12px;
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  overflow:auto;
+  background: rgba(255,255,255,.50);
+}
+.fhcTable{
+  width:100%;
+  border-collapse: collapse;
+  min-width: 740px;
+}
+.fhcTable th, .fhcTable td{
+  padding: 10px;
+  border-bottom: 1px solid rgba(17,17,17,.08);
+  vertical-align: middle;
+}
+.fhcTable th{
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: rgba(17,17,17,.62);
+  background: rgba(255,255,255,.70);
+}
+.fhcTable .num{ text-align:right; width: 220px; }
+.fhcTable .per{ width: 180px; }
+.fhcTable input, .fhcTable select{
+  width:100%;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(17,17,17,.18);
+  background: rgba(255,255,255,.70);
+  font: inherit;
+}
+
+/* Review */
+.fhcReview{ padding: 14px 0 70px; }
+.fhcReviewGrid{
+  margin-top: 12px;
+  display:grid;
+  gap:10px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px){
+  .fhcReviewGrid{ grid-template-columns: 1fr 1fr 1fr; }
+}
+.fhcStat{
+  background: rgba(255,255,255,.58);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  padding: 12px;
+}
+.fhcStat b{ display:block; }
+.fhcStat .v{ margin-top: 8px; font-weight: 1000; }
+
+.fhcSubmitRow{
+  margin-top: 14px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.fhcSmall{
+  margin-top: 10px;
+  color: rgba(17,17,17,.62);
+  font-size: 13px;
+}
+
+/* Toast */
+.fhcToast{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  background: rgba(17,17,17,.88);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  z-index: 90;
+  box-shadow: 0 18px 40px rgba(0,0,0,.22);
+}
+
+/* Animations */
+.fhcAnimIn{
+  animation: fhcIn .35s ease both;
+}
+@keyframes fhcIn{
+  from{ opacity:0; transform: translateY(8px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* Table mode (desktop) — lebih rapi */
+.fhcTableWrap{
+  margin-top: 12px;
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  overflow: auto;
+  background: rgba(255,255,255,.50);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* default table */
+.fhcTable{
+  width:100%;
+  border-collapse: separate;  /* biar sticky header rapih */
+  border-spacing: 0;
+  min-width: 740px;
+}
+
+.fhcTable th, .fhcTable td{
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(17,17,17,.08);
+  vertical-align: middle;
+}
+
+/* sticky header biar enak saat scroll panjang */
+.fhcTable thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: rgba(17,17,17,.62);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+}
+
+/* zebra ringan */
+.fhcTable tbody tr:nth-child(even) td{
+  background: rgba(255,255,255,.28);
+}
+
+/* hover row biar “kerasa” */
+@media (hover:hover){
+  .fhcTable tbody tr:hover td{
+    background: rgba(17,17,17,.035);
+  }
+}
+
+.fhcTable .num{ text-align:right; width: 220px; }
+.fhcTable .per{ width: 180px; }
+
+/* input feel */
+.fhcTable input, .fhcTable select{
+  width:100%;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(17,17,17,.18);
+  background: rgba(255,255,255,.80);
+  font: inherit;
+}
+
+/* fokus lebih jelas */
+.fhcTable input:focus, .fhcTable select:focus{
+  outline: none;
+  border-color: rgba(255,138,0,.55);
+  box-shadow: 0 0 0 4px rgba(255,138,0,.16);
+}
+
+/* Mobile: bikin spacing kartu lebih nyaman */
+@media (max-width: 820px){
+  .fhcItem{ padding: 12px; }
+  .fhcMoney .rp{ padding: 10px 10px; }
+  .fhcPeriod button{ padding: 12px 12px; } /* tap target lebih besar */
+}
+
+.fhcPeriod button:focus{
+  outline:none;
+  border-color: rgba(255,138,0,.55);
+  box-shadow: 0 0 0 4px rgba(255,138,0,.16);
+}

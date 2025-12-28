@@ -989,3 +989,61 @@
     .aboutMedia{ min-height: 320px; }
   }
   
+
+  /* =========================
+   NAV DROPDOWN (Fitur)
+   ========================= */
+.nav .dd{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.nav .dd > a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.nav .caret{
+  width: 10px;
+  height: 10px;
+  display:inline-block;
+  border-right: 2px solid rgba(17,17,17,.55);
+  border-bottom: 2px solid rgba(17,17,17,.55);
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.ddMenu{
+  position:absolute;
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(17,17,17,.12);
+  box-shadow: 0 26px 70px rgba(0,0,0,.18);
+  display:none;
+  z-index: 80;
+}
+.ddMenu a{
+  display:block;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(17,17,17,.04);
+  border: 1px solid rgba(17,17,17,.06);
+  margin-bottom: 8px;
+  text-decoration:none;
+  font-weight:900;
+  color: rgba(17,17,17,.88);
+}
+.ddMenu a:last-child{ margin-bottom:0; }
+.ddMenu a:hover{ background: rgba(17,17,17,.06); }
+
+/* Hover open (desktop) */
+@media (min-width: 821px){
+  .nav .dd:hover .ddMenu{ display:block; }
+}
+
+/* Mobile: dropdown link will go to fitur page section (we’ll keep simple) */
