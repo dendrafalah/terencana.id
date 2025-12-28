@@ -74,15 +74,17 @@
                 · <a href="https://www.instagram.com/dendrafalah/" target="_blank" rel="noopener">Instagram</a>
               </span>
             </div>
-            <p class="fhcLead" id="subtitle">Ringkasan dulu, detail belakangan. Biar nggak bikin pusing.</p>
+            <p class="fhcLead" id="subtitle">Ini bedah ringkas + detail indikator, biar kamu tahu posisi dan langkah berikutnya.</p>
           </div>
 
-          <div class="fhcMode">
-            <span class="fhcModeLabel">Aksi:</span>
-            <button class="fhcChip" id="btnPdf" type="button">Simpan PDF</button>
-            <button class="fhcChip" id="btnExcel" type="button">Export Excel</button>
-          </div>
-        </div>
+          <div class="fhcMode fhcModeResult">
+
+  <div class="fhcModeBlock">
+    <span class="fhcModeLabel">Aksi:</span>
+    <button class="fhcChip" id="btnPdf" type="button">Simpan PDF</button>
+    <button class="fhcChip" id="btnExcel" type="button">Export Excel</button>
+  </div>
+</div>
 
         <div class="fhcPrivacy">
           <span class="fhcDot" aria-hidden="true"></span>
@@ -92,9 +94,13 @@
     </section>
 
     <section class="fhcWizard" style="padding-top:12px;">
-      <div class="fhcCard fhcAnimIn" id="resultMount">
-        Memuat hasil…
-      </div>
+      <div class="fhcAnimIn" id="resultMount">
+  <section id="resultView" class="fhcCard">Memuat hasil…</section>
+
+  <!-- opsional tapi sangat disarankan: biar input ikut kebawa di PDF -->
+  <section id="inputView" class="fhcCard" style="margin-top:12px;"></section>
+</div>
+
 
       <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
         <a class="btn ghost" href="./index.html">Perbaiki input</a>

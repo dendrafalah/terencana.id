@@ -463,3 +463,144 @@
   border-color: rgba(255,138,0,.55);
   box-shadow: 0 0 0 4px rgba(255,138,0,.16);
 }
+
+/* =========================
+   FHC Result (hasil.html)
+   ========================= */
+
+/* container untuk grid ringkasan */
+.fhcResultGrid{
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px){
+  .fhcResultGrid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* kartu metrik (simple mode) */
+.fhcMetric{
+  background: rgba(255,255,255,.58);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top row */
+.fhcMetric .top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.fhcMetric .val{
+  margin-top: 10px;
+  font-weight: 1000;
+  font-size: 20px;
+  letter-spacing: -.02em;
+}
+
+/* pill status */
+.fhcPill{
+  font-size: 12px;
+  font-weight: 1000;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,17,17,.12);
+  background: rgba(17,17,17,.05);
+  color: rgba(17,17,17,.72);
+}
+
+/* indikator (advanced mode) */
+.fhcIndicator{
+  background: rgba(255,255,255,.58);
+  border: 1px solid rgba(17,17,17,.10);
+  border-radius: 18px;
+  padding: 14px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.fhcIndicator .head{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap:10px;
+}
+.fhcIndicator .val{
+  margin-top: 8px;
+  font-weight: 1000;
+  font-size: 22px;
+  letter-spacing: -.02em;
+}
+.fhcIndicator .mini{
+  margin-top: 6px;
+  color: rgba(17,17,17,.62);
+  font-size: 13px;
+}
+.fhcIndicator .detail{
+  margin-top: 8px;
+  color: rgba(17,17,17,.78);
+  font-size: 13px;
+  line-height: 1.5;
+  border-top: 1px dashed rgba(17,17,17,.14);
+  padding-top: 8px;
+}
+
+/* --- COLOR CODE (good / warn / bad) ---
+   Dibuat soft (nggak norak), tapi tetap kerasa
+*/
+.fhcMetric.good, .fhcIndicator.good{
+  border-color: rgba(6,118,71,.22);
+  box-shadow: 0 0 0 4px rgba(6,118,71,.10) inset;
+}
+.fhcMetric.warn, .fhcIndicator.warn{
+  border-color: rgba(138,91,0,.22);
+  box-shadow: 0 0 0 4px rgba(138,91,0,.10) inset;
+}
+.fhcMetric.bad, .fhcIndicator.bad{
+  border-color: rgba(180,35,24,.22);
+  box-shadow: 0 0 0 4px rgba(180,35,24,.10) inset;
+}
+
+.fhcPill.good{
+  background: rgba(6,118,71,.10);
+  border-color: rgba(6,118,71,.18);
+  color: rgba(6,118,71,.92);
+}
+.fhcPill.warn{
+  background: rgba(138,91,0,.10);
+  border-color: rgba(138,91,0,.18);
+  color: rgba(138,91,0,.92);
+}
+.fhcPill.bad{
+  background: rgba(180,35,24,.10);
+  border-color: rgba(180,35,24,.18);
+  color: rgba(180,35,24,.92);
+}
+
+/* aksen strip kecil biar cepat kebaca */
+.fhcMetric.good::before,
+.fhcMetric.warn::before,
+.fhcMetric.bad::before,
+.fhcIndicator.good::before,
+.fhcIndicator.warn::before,
+.fhcIndicator.bad::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 6px;
+  opacity: .9;
+}
+.fhcMetric.good::before, .fhcIndicator.good::before{ background: rgba(6,118,71,.55); }
+.fhcMetric.warn::before, .fhcIndicator.warn::before{ background: rgba(138,91,0,.55); }
+.fhcMetric.bad::before,  .fhcIndicator.bad::before{  background: rgba(180,35,24,.55); }
+
+/* toggle button state (simple/advanced) */
+.fhcChip.active{
+  background: rgba(17,17,17,.08);
+  border-color: rgba(17,17,17,.18);
+}
