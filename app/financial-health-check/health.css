@@ -583,21 +583,21 @@
 }
 
 /* aksen strip kecil biar cepat kebaca */
-.fhcMetric.good::before,
-.fhcMetric.warn::before,
-.fhcMetric.bad::before,
-.fhcIndicator.good::before,
-.fhcIndicator.warn::before,
-.fhcIndicator.bad::before{
-  content:"";
-  position:absolute;
-  left:0; top:0; bottom:0;
-  width: 6px;
-  opacity: .9;
+/* Strip kiri pakai border-left (lebih stabil daripada ::before) */
+.fhcMetric, .fhcIndicator{
+  border-left: 6px solid transparent;
 }
-.fhcMetric.good::before, .fhcIndicator.good::before{ background: rgba(6,118,71,.55); }
-.fhcMetric.warn::before, .fhcIndicator.warn::before{ background: rgba(138,91,0,.55); }
-.fhcMetric.bad::before,  .fhcIndicator.bad::before{  background: rgba(180,35,24,.55); }
+
+.fhcMetric.good, .fhcIndicator.good{
+  border-left-color: rgba(6,118,71,.55);
+}
+.fhcMetric.warn, .fhcIndicator.warn{
+  border-left-color: rgba(138,91,0,.55);
+}
+.fhcMetric.bad, .fhcIndicator.bad{
+  border-left-color: rgba(180,35,24,.55);
+}
+
 
 /* toggle button state (simple/advanced) */
 .fhcChip.active{
