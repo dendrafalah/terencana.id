@@ -264,6 +264,149 @@ function bindActions() {
   // btnExcel optional, biar build aman dulu
 }
 
+function periodLabel(p: any) {
+  return p === "yearly" ? "Tahunan" : "Bulanan";
+}
+
+function safeName(row: any) {
+  // beberapa data wizard biasanya pakai label/name/title, fallback ke tag
+  const n = (row?.name || row?.label || row?.title || "").toString().trim();
+  return n || (row?.tag ? String(row.tag) : "-");
+}
+
+function renderListTable(title: string, list: any[]) {
+  const rows = (list || []).filter((x) => Number(x?.amount || 0) !== 0);
+
+  const totalM = sumListMonthly(rows);
+
+  const body =
+    rows.length === 0
+      ? `<tr><td colspan="4" style="padding:10px; color:rgba(17,17,17,.62);">Tidak ada data</td></tr>`
+      : rows
+          .map((r) => {
+            const amt = Number(r?.amount || 0);
+            const per = r?.period || "monthly";
+            const perM = monthlyEq(amt, per);
+            return `
+              <tr>
+                <td style="padding:10px; border-top:1px solid rgba(17,17,17,.12);">
+                  ${escapeHtml(safeName(r))}
+                </td>
+                <td style="padding:10px; border-top:1px solid rgba(17,17,17,.12); white-space:nowrap;">
+                  ${escapeHtml(periodLabel(per))}
+                </td>
+                <td style="padding:10px; border-top:1px solid rgba(17,17,17,.12); text-align:right; white-space:nowrap;">
+                  ${escapeHtml(fmtIDR(amt))}
+                </td>
+                <td style="padding:10px; border-top:1px solid rgba(17,17,17,.12); text-align:right; white-space:nowrap;">
+                  ${escapeHtml(fmtIDR(perM))}
+                </td>
+              </tr>
+            `;
+          })
+          .join("");
+
+  return `
+    <div style="margin-top:14px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+        <h3 style="margin:0; font-size:15px;">${escapeHtml(title)}</h3>
+        <div style="color:rgba(17,17,17,.68); font-size:13px;">
+          Total / bulan: <b>${escapeHtml(fmtIDR(totalM))}</b>
+        </div>
+      </div>
+
+      <div style="overflow:auto; margin-top:10px; border:1px solid rgba(17,17,17,.12); border-radius:14px; background:rgba(255,255,255,.55);">
+        <table style="width:100%; border-collapse:collapse; min-width:560px;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding:10px; font-size:13px; color:rgba(17,17,17,.68);">Item</th>
+              <th style="text-align:left; padding:10px; font-size:13px; color:rgba(17,17,17,.68);">Periode</th>
+              <th style="text-align:right; padding:10px; font-size:13px; color:rgba(17,17,17,.68);">Nominal</th>
+              <th style="text-align:right; padding:10px; font-size:13px; color:rgba(17,17,17,.68);">Ekuivalen / bulan</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${body}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:8px; font-size:12px; color:rgba(17,17,17,.62);">
+        Catatan: item tahunan dihitung jadi ekuivalen bulanan (dibagi 12) untuk perbandingan.
+      </div>
+    </div>
+  `;
+}
+
+function renderAssetsDebts(s: any) {
+  const assets = s.asetutang?.assets || [];
+  const debts = s.asetutang?.debts || [];
+
+  const assetsTotal = assets.reduce((a: number, b: any) => a + (b.amount || 0), 0);
+  const debtsTotal = debts.reduce((a: number, b: any) => a + (b.amount || 0), 0);
+
+  const listSimple = (title: string, list: any[]) => {
+    const rows = (list || []).filter((x) => Number(x?.amount || 0) !== 0);
+    const body =
+      rows.length === 0
+        ? `<li style="color:rgba(17,17,17,.62);">Tidak ada data</li>`
+        : rows
+            .map(
+              (r) =>
+                `<li>${escapeHtml(safeName(r))} — <b>${escapeHtml(fmtIDR(r.amount || 0))}</b></li>`
+            )
+            .join("");
+
+    return `
+      <div style="margin-top:10px;">
+        <div style="font-weight:700; margin-bottom:6px;">${escapeHtml(title)}</div>
+        <ul style="margin:0; padding-left:18px; line-height:1.7; color:rgba(17,17,17,.82);">
+          ${body}
+        </ul>
+      </div>
+    `;
+  };
+
+  return `
+    <div style="margin-top:14px;">
+      <h3 style="margin:0; font-size:15px;">Aset & Utang</h3>
+      <div class="fhcReviewGrid" style="margin-top:10px;">
+        ${stat("Total aset", fmtIDR(assetsTotal), "")}
+        ${stat("Total utang", fmtIDR(debtsTotal), "")}
+        ${stat("Kekayaan bersih", fmtIDR(assetsTotal - debtsTotal), "")}
+      </div>
+      ${listSimple("Daftar aset", assets)}
+      ${listSimple("Daftar utang", debts)}
+    </div>
+  `;
+}
+
+function renderInputDetail(s: any) {
+  // timestamp kecil biar enak buat PDF/documentation
+  const now = new Date();
+  const stamp = new Intl.DateTimeFormat("id-ID", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(now);
+
+  return `
+    <div style="margin-top:16px;">
+      <h2 class="fhcH2">Detail isian (untuk referensi & PDF)</h2>
+      <p class="fhcP" style="margin-top:6px;">
+        Dicetak pada: <b>${escapeHtml(stamp)}</b>
+      </p>
+
+      ${renderListTable("Pemasukan", s.pemasukan || [])}
+      ${renderListTable("Pengeluaran wajib", s.wajib || [])}
+      ${renderListTable("Pengeluaran opsional", s.opsional || [])}
+      ${renderListTable("Komitmen (cicilan/proteksi/tabungan/investasi)", s.komitmen || [])}
+
+      ${renderAssetsDebts(s)}
+    </div>
+  `;
+}
+
+
 function build() {
   const s = load();
   const resultView = document.getElementById("resultView");
@@ -357,8 +500,9 @@ function build() {
 
   ctx.steps = buildNextSteps(ctx);
 
-  resultView.innerHTML = renderAdvancedWithSteps(ctx);
-  if (inputView) inputView.innerHTML = renderInputSummary(s);
+    resultView.innerHTML = renderAdvancedWithSteps(ctx);
+  if (inputView) inputView.innerHTML = renderInputSummary(s) + renderInputDetail(s);
+
 
   bindActions();
 }
