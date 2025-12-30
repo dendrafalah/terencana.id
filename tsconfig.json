@@ -31,7 +31,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/financial-health-check/health.client.js"  ],
   "exclude": [
     "node_modules"
   ]

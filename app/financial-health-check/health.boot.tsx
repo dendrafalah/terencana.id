@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { initHealthWizard } from "./health.client.js";
+import { initHealthWizard } from "./health.client";
 
 export default function HealthBoot() {
   useEffect(() => {

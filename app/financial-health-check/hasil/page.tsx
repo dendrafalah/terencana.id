@@ -1,6 +1,6 @@
 import Script from "next/script";
 import "../health.css";
-import ResultBoot from "./hasil.client";
+import ResultBoot from "./hasil.boot";
 
 export const metadata = {
   title: "terencana.id — Hasil Cek Kesehatan Keuangan",
@@ -18,31 +18,8 @@ export default function HasilPage() {
             <div className="fhcTitleRow">
               <div>
                 <h1 className="fhcH1">Hasil Cek Kesehatan Keuangan</h1>
-                <div className="fhcByline">
-                  oleh <b>Dendra Falah, CFP®</b>
-                  <span className="fhcSocial">
-                    {" "}
-                    ·{" "}
-                    <a
-                      href="https://www.linkedin.com/in/dendrafalah/"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      LinkedIn
-                    </a>{" "}
-                    ·{" "}
-                    <a
-                      href="https://www.instagram.com/dendrafalah/"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      Instagram
-                    </a>
-                  </span>
-                </div>
-                <p className="fhcLead" id="subtitle">
-                  Ini bedah ringkas + detail indikator, biar kamu tahu posisi dan
-                  langkah berikutnya.
+                <p className="fhcLead">
+                  Ini bedah ringkas + detail indikator, biar kamu tahu posisi dan langkah berikutnya.
                 </p>
               </div>
 
@@ -52,16 +29,12 @@ export default function HasilPage() {
                   <button className="fhcChip" id="btnPdf" type="button">
                     Simpan PDF
                   </button>
-                  <button className="fhcChip" id="btnExcel" type="button">
-                    Export Excel
-                  </button>
                 </div>
               </div>
 
               <div className="fhcPrivacy">
                 <span className="fhcDot" aria-hidden="true"></span>
-                Hasil ini diambil dari data yang tersimpan di perangkatmu
-                (browser).
+                Hasil ini diambil dari data yang tersimpan di perangkatmu (browser).
               </div>
             </div>
           </div>
@@ -72,22 +45,10 @@ export default function HasilPage() {
             <section id="resultView" className="fhcCard">
               Memuat hasil…
             </section>
-            <section
-              id="inputView"
-              className="fhcCard"
-              style={{ marginTop: 12 }}
-            />
+            <section id="inputView" className="fhcCard" style={{ marginTop: 12 }} />
           </div>
 
-          <div
-            style={{
-              marginTop: 12,
-              display: "flex",
-              gap: 12,
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
+          <div style={{ marginTop: 12, display: "flex", gap: 12, flexWrap: "wrap" }}>
             <a className="btn ghost" href="/financial-health-check/">
               Perbaiki input
             </a>

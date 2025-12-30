@@ -1,6 +1,6 @@
 import Script from "next/script";
 import "./health.css";
-import HealthBoot from "./health.client";
+import HealthBoot from "./health.boot";
 
 export const metadata = {
   title: "terencana.id — Cek Kesehatan Keuangan",
