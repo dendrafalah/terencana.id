@@ -1,11 +1,11 @@
 import "../assets/styles.css";
 import type { Metadata } from "next";
 import Script from "next/script";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "terencana.id",
-  description:
-    "Perencanaan keuangan personal dan keluarga, dimulai dari langkah yang masuk akal.",
+  description: "Perencanaan keuangan personal dan keluarga, dimulai dari langkah yang masuk akal.",
 };
 
 export default function RootLayout({
@@ -40,9 +40,8 @@ export default function RootLayout({
                     Fitur <span className="caret" aria-hidden="true"></span>
                   </a>
                   <div className="ddMenu" role="menu">
-                    <a href="/financial-health-check/">
-                      Cek Kesehatan Keuangan
-                    </a>
+                    <a href="/financial-health-check/">Cek Kesehatan Keuangan</a>
+                    <a href="/goal-plan/">Hitung Target Masa Depan</a>
                   </div>
                 </div>
 
@@ -60,6 +59,8 @@ export default function RootLayout({
                 >
                   Menu <span aria-hidden="true">☰</span>
                 </button>
+
+                {/* CTA: tetap ke fitur utama */}
                 <a className="btn primary" href="/financial-health-check/">
                   Cek GRATIS
                 </a>
@@ -68,11 +69,7 @@ export default function RootLayout({
           </div>
 
           {/* ===== Mobile Nav ===== */}
-          <div
-            id="mnavOverlay"
-            className="mnavOverlay"
-            aria-hidden="true"
-          ></div>
+          <div id="mnavOverlay" className="mnavOverlay" aria-hidden="true"></div>
 
           <div
             id="mnav"
@@ -83,11 +80,7 @@ export default function RootLayout({
           >
             <div className="mnavTop">
               <b>Menu</b>
-              <button
-                id="menuClose"
-                className="mnavClose"
-                type="button"
-              >
+              <button id="menuClose" className="mnavClose" type="button">
                 Tutup
               </button>
             </div>
@@ -96,18 +89,17 @@ export default function RootLayout({
               <a href="/">Beranda</a>
               <a href="/about/">Tentang Kami</a>
               <a href="/how/">Cara Kerja</a>
-              <a href="/financial-health-check/">
-                Fitur: Cek Kesehatan Keuangan
-              </a>
+
+              {/* Fitur */}
+              <a href="/financial-health-check/">Fitur: Cek Kesehatan Keuangan</a>
+              <a href="/goal-plan/">Fitur: Hitung Target Masa Depan</a>
+
               <a href="/faq/">FAQ</a>
               <a href="/contact/">Kontak</a>
             </div>
 
             <div className="mnavActions">
-              <a
-                className="btn primary"
-                href="/financial-health-check/"
-              >
+              <a className="btn primary" href="/financial-health-check/">
                 Cek GRATIS (±5 menit)
               </a>
             </div>
@@ -122,10 +114,7 @@ export default function RootLayout({
         {/* =========================
             GLOBAL JS
            ========================= */}
-        <Script
-          src="/assets/main.js"
-          strategy="afterInteractive"
-        />
+        <Script src="/assets/main.js" strategy="afterInteractive" />
       </body>
     </html>
   );

@@ -1,0 +1,20 @@
+/* app/futureplan/page.module.css */
+
+.range {
+  width: 100%;
+}
+
+/* Print rules (local to this page via class usage + a bit of global) */
+@media print {
+  :global(body) {
+    background: white !important;
+  }
+
+  .root {
+    max-width: 100% !important;
+  }
+
+  .noPrint {
+    display: none !important;
+  }
+}
