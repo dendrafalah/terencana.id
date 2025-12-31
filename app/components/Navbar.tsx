@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // optional: lock scroll saat menu open
+  // lock scroll saat mobile menu open
   useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -26,6 +25,7 @@ export default function Navbar() {
             />
           </a>
 
+          {/* ===== Desktop Nav ===== */}
           <nav className="nav" aria-label="Navigasi">
             <a href="/">Beranda</a>
             <a href="/about/">Tentang kami</a>
@@ -36,15 +36,24 @@ export default function Navbar() {
                 Fitur <span className="caret" aria-hidden="true"></span>
               </a>
               <div className="ddMenu" role="menu">
-                <a href="/financial-health-check/">Cek Kesehatan Keuangan</a>
-                <a href="/goal-plan/">Hitung Target Masa Depan</a>
+                <a href="/cek-keuangan/">
+                  <strong>Potret Keuangan</strong>
+                </a>
+                <a href="/financial-health-check/">
+                  Cek Kesehatan Keuangan
+                </a>
+                <a href="/goal-plan/">
+                  Hitung Target Masa Depan
+                </a>
               </div>
             </div>
 
             <a href="/faq/">FAQ</a>
             <a href="/contact/">Kontak</a>
+            <a href="/blog/">Blog</a>
           </nav>
 
+          {/* ===== Desktop Actions ===== */}
           <div className="actions">
             <button
               id="menuBtn"
@@ -57,6 +66,7 @@ export default function Navbar() {
               Menu <span aria-hidden="true">☰</span>
             </button>
 
+            {/* CTA utama tetap */}
             <a className="btn primary" href="/financial-health-check/">
               Cek GRATIS
             </a>
@@ -64,27 +74,23 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Overlay */}
+      {/* ===== Overlay ===== */}
       <div
         id="mnavOverlay"
         className="mnavOverlay"
         aria-hidden={!open}
         onClick={() => setOpen(false)}
-        style={{
-          display: open ? "block" : "none",
-        }}
+        style={{ display: open ? "block" : "none" }}
       />
 
-      {/* Drawer */}
+      {/* ===== Mobile Drawer ===== */}
       <div
         id="mnav"
         className="mnav"
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        style={{
-          display: open ? "block" : "none",
-        }}
+        style={{ display: open ? "block" : "none" }}
       >
         <div className="mnavTop">
           <b>Menu</b>
@@ -103,15 +109,26 @@ export default function Navbar() {
           <a href="/about/">Tentang Kami</a>
           <a href="/how/">Cara Kerja</a>
 
-          <a href="/financial-health-check/">
-            Fitur: Cek Kesehatan Keuangan
+          <hr />
+
+          <a href="/cek-keuangan/">
+            <strong>Potret Keuangan</strong>
           </a>
-          <a href="/goal-plan/">Fitur: Hitung Target Masa Depan</a>
+          <a href="/financial-health-check/">
+            Cek Kesehatan Keuangan
+          </a>
+          <a href="/goal-plan/">
+            Hitung Target Masa Depan
+          </a>
+
+          <hr />
 
           <a href="/faq/">FAQ</a>
           <a href="/contact/">Kontak</a>
+          <a href="/blog/">Blog</a>
         </div>
 
+        {/* CTA mobile tetap ke health check */}
         <div className="mnavActions">
           <a
             className="btn primary"
