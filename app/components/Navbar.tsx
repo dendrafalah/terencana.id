@@ -39,12 +39,11 @@ export default function Navbar() {
                 <a href="/cek-keuangan/">
                   <strong>Potret Keuangan</strong>
                 </a>
-                <a href="/financial-health-check/">
-                  Cek Kesehatan Keuangan
-                </a>
-                <a href="/goal-plan/">
-                  Hitung Target Masa Depan
-                </a>
+                <a href="/financial-health-check/">Cek Kesehatan Keuangan</a>
+                <a href="/goal-plan/">Hitung Target Masa Depan</a>
+
+                {/* NEW: Rencana Nikah */}
+                <a href="/rencana-nikah/">Rencana Nikah</a>
               </div>
             </div>
 
@@ -114,12 +113,11 @@ export default function Navbar() {
           <a href="/cek-keuangan/">
             <strong>Potret Keuangan</strong>
           </a>
-          <a href="/financial-health-check/">
-            Cek Kesehatan Keuangan
-          </a>
-          <a href="/goal-plan/">
-            Hitung Target Masa Depan
-          </a>
+          <a href="/financial-health-check/">Cek Kesehatan Keuangan</a>
+          <a href="/goal-plan/">Hitung Target Masa Depan</a>
+
+          {/* NEW: Rencana Nikah */}
+          <a href="/rencana-nikah/">Rencana Nikah</a>
 
           <hr />
 
