@@ -5,8 +5,11 @@ export const metadata: Metadata = {
   description: "Cara kerja Financial Health Check terencana.id.",
 };
 
-function buildWAHref(text: string) {
-  return `https://wa.me/?text=${encodeURIComponent(text)}`;
+const WA_NUMBER = "6281944123422"; // 62xxxxxxxxxxx
+
+function buildWAHref(text: string, number = WA_NUMBER) {
+  const n = String(number || "").replace(/[^\d]/g, ""); // sanitize
+  return `https://wa.me/${n}?text=${encodeURIComponent(text)}`;
 }
 
 export default function HowPage() {
